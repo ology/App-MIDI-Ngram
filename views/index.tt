@@ -47,8 +47,8 @@
                         <option value="[% d %]" [% d == pause ? 'selected' : '' %] >[% d %]</option>
 [% END %]
                     </select></label></li>
-                <li><label>Weight: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label></li>
                 <li><label>Loop: <input type="text" name="loop" maxlength="2" size="2" value="[% loop %]" /></label></li>
+                <li><label>Weight: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label></li>
                 <li><label>Random patch: <input type="checkbox" name="random_patch" [% random_patch ? 'checked' : '' %] /></label></li>
                 <li><label>Shuffle phrases: <input type="checkbox" name="shuffle_phrases" [% shuffle_phrases ? 'checked' : '' %] /></label></li>
                 <li><label>Single phrases: <input type="checkbox" name="single_phrases" [% single_phrases ? 'checked' : '' %] /></label></li>
