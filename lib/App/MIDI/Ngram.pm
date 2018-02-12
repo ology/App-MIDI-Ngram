@@ -42,6 +42,8 @@ post '/generate' => sub {
         74 79
     );
 
+    my $phrases; # Bucket for the ngrams
+
     if ( $midi_file ) {
         my $mng = MIDI::Ngram->new(
             file            => $filename,
@@ -64,6 +66,8 @@ post '/generate' => sub {
         $mng->populate;
         $mng->write;
 
+        $phrases = $mng->notes;
+
         unlink $filename
             or croak "Can't unlink $filename: $!";
     }
@@ -81,6 +85,7 @@ post '/generate' => sub {
         random_patch    => $random_patch,
         shuffle_phrases => $shuffle_phrases,
         single_phrases  => $single_phrases,
+        phrases         => $phrases,
     };
 };
 
