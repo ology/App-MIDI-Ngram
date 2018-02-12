@@ -24,7 +24,7 @@
                 <li><label>Ngram size: <input type="text" name="ngram_size" maxlength="2" size="2" value="[% ngram_size %]" /></label></li>
                 <li><label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
                 <li><label>BPM: <input type="text" name="bpm" maxlength="3" size="3" value="[% bpm %]" /></label></li>
-                <li><label>Durations: <select name="durations" multiple size="4">
+                <li><label>Durations:<br><select name="durations" multiple size="4">
                         <option value="sn" [% durations.grep('^sn$').size ? 'selected' : '' %] >sn</option>
                         <option value="dsn" [% durations.grep('^dsn$').size ? 'selected' : '' %] >dsn</option>
                         <option value="tsn" [% durations.grep('^tsn$').size ? 'selected' : '' %] >tsn</option>
