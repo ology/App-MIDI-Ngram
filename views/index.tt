@@ -57,7 +57,7 @@
             <input type="submit" />
             </form>
 
-            [% IF request.uri == '/generate' %]
+[% IF request.uri == '/generate' %]
             <p style="text-align: center">
                 <a href="#" onClick="MIDIjs.play('midi-ngram.mid');">Play</a>
                 |
@@ -65,7 +65,28 @@
                 |
                 <a href="midi-ngram.mid">Download</a>
             </p>
-            [% END %]
+[% END %]
+
+[% IF weight %]
+    [% FOREACH p in phrases %]
+            Channel [% p.key %] -
+            <br>
+        [% FOREACH q in p.value %]
+            [% q.key %]: [% q.value %]
+            <br>
+        [% END %]
+            <br>
+    [% END %]
+[% ELSE %]
+    [% FOREACH p in phrases %]
+            Channel [% p.key %] -
+            <br>
+        [% FOREACH v IN p.value %]
+            [% v %]
+            <br>
+        [% END %]
+    [% END %]
+[% END %]
         </div>
 
     </div>
