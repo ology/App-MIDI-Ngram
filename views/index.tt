@@ -25,9 +25,21 @@
                 <li><label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
                 <li><label>BPM: <input type="text" name="bpm" maxlength="3" size="3" value="[% bpm %]" /></label></li>
                 <li><label>Durations: <select name="durations" multiple size="4">
-[% FOREACH d IN all_durations %]
-                    <option value="[% d %]">[% d %]</option>
-[% END %]
+                        <option value="sn" [% durations.grep('^sn$').size ? 'selected' : '' %] >sn</option>
+                        <option value="dsn" [% durations.grep('^dsn$').size ? 'selected' : '' %] >dsn</option>
+                        <option value="tsn" [% durations.grep('^tsn$').size ? 'selected' : '' %] >tsn</option>
+                        <option value="en" [% durations.grep('^en$').size ? 'selected' : '' %] >en</option>
+                        <option value="den" [% durations.grep('^den$').size ? 'selected' : '' %] >den</option>
+                        <option value="ten" [% durations.grep('^ten$').size ? 'selected' : '' %] >ten</option>
+                        <option value="qn" [% durations.grep('^qn$').size ? 'selected' : '' %] >qn</option>
+                        <option value="dqn" [% durations.grep('^dqn$').size ? 'selected' : '' %] >dqn</option>
+                        <option value="tqn" [% durations.grep('^tqn$').size ? 'selected' : '' %] >tqn</option>
+                        <option value="hn" [% durations.grep('^hn$').size ? 'selected' : '' %] >hn</option>
+                        <option value="dhn" [% durations.grep('^dhn$').size ? 'selected' : '' %] >dhn</option>
+                        <option value="thn" [% durations.grep('^thn$').size ? 'selected' : '' %] >thn</option>
+                        <option value="wn" [% durations.grep('^wn$').size ? 'selected' : '' %] >wn</option>
+                        <option value="dwn" [% durations.grep('^dwn$').size ? 'selected' : '' %] >dwn</option>
+                        <option value="twn" [% durations.grep('^twn$').size ? 'selected' : '' %] >twn</option>
                     </select></label></li>
                 <li><label>Pause duration: <select name="pause">
                         <option value="" [% pause ? '' : 'selected' %] >None</option>
