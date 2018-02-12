@@ -1,0 +1,60 @@
+[% 
+    all_durations => [
+        'sn', 'dsn', 'tsn',
+        'en', 'den', 'ten',
+        'qn', 'dqn', 'tqn',
+        'hn', 'dhn', 'thn',
+        'wn', 'dwn', 'twn',
+    ]
+%]
+
+<div id="page">
+    <div id="content">
+
+        <div id="header">
+            <h1>[% title %]</h1>
+            <h2>Play the top repeated note phrases of a MIDI file</h2>
+        </div>
+
+        <div id="body">
+            <form action="/generate" method="post" enctype="multipart/form-data">
+            <h3>Parameters:</h3>
+            <ul class="links">
+                <li><label>MIDI File: <input name="midi_file" type="file" /></label></li>
+                <li><label>Ngram size: <input type="text" name="ngram_size" maxlength="2" size="2" value="[% ngram_size %]" /></label></li>
+                <li><label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
+                <li><label>BPM: <input type="text" name="bpm" maxlength="3" size="3" value="[% bpm %]" /></label></li>
+                <li><label>Durations: <select name="durations" multiple size="4">
+[% FOREACH d IN all_durations %]
+                    <option value="[% d %]">[% d %]</option>
+[% END %]
+                    </select></label></li>
+                <li><label>Pause duration: <select name="pause">
+                        <option value="" [% pause ? '' : 'selected' %] >None</option>
+[% FOREACH d IN all_durations %]
+                        <option value="[% d %]" [% d == pause ? 'selected' : '' %] >[% d %]</option>
+[% END %]
+                    </select></label></li>
+                <li><label>Weight: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label></li>
+                <li><label>Loop: <input type="text" name="loop" maxlength="2" size="2" value="[% loop %]" /></label></li>
+                <li><label>Random patch: <input type="checkbox" name="random_patch" [% random_patch ? 'checked' : '' %] /></label></li>
+                <li><label>Shuffle phrases: <input type="checkbox" name="shuffle_phrases" [% shuffle_phrases ? 'checked' : '' %] /></label></li>
+                <li><label>Single phrases: <input type="checkbox" name="single_phrases" [% single_phrases ? 'checked' : '' %] /></label></li>
+            </ul>
+
+            <input type="submit" />
+            </form>
+
+            [% IF request.uri == '/generate' %]
+            <p style="text-align: center">
+                <a href="#" onClick="MIDIjs.play('midi-ngram.mid');">Play</a>
+                |
+                <a href="#" onClick="MIDIjs.stop();">Stop</a>
+                |
+                <a href="midi-ngram.mid">Download</a>
+            </p>
+            [% END %]
+        </div>
+
+    </div>
+</div>
