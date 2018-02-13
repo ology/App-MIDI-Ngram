@@ -67,39 +67,8 @@
             </p>
 [% END %]
 
-[% i = 0 %]
-<table cellpadding="10">
-    <tr>
-[% IF weight %]
-    [% FOREACH p in phrases %]
-        [% i = i + 1 %]
-        <td nowrap valign="top">
-            Channel [% p.key %]
-            <br>
-        [% FOREACH q in p.value %]
-            [% q.key %]: [% q.value %]
-            <br>
-        [% END %]
-            <br>
-        </td>
-        [% UNLESS i % 5 %]</tr><tr>[% END %]
-    [% END %]
-[% ELSE %]
-    [% FOREACH p in phrases %]
-        [% i = i + 1 %]
-        <td nowrap valign="top">
-            Channel [% p.key %]
-            <br>
-        [% FOREACH v IN p.value %]
-            [% v %]
-            <br>
-        [% END %]
-        </td>
-        [% UNLESS i % 5 %]</tr><tr>[% END %]
-    [% END %]
-[% END %]
-    </tr>
-</table>
+            <pre>[% analysis %]</pre>
+            <pre>[% playback %]</pre>
 
         </div>
 

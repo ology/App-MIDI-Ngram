@@ -42,7 +42,8 @@ post '/generate' => sub {
         74 79
     );
 
-    my $phrases; # Bucket for the ngrams
+    my $analysis; # Text string of the ngram analysis
+    my $playback; # Text string of the phrase playback
 
     if ( $midi_file ) {
         my $mng = MIDI::Ngram->new(
@@ -58,15 +59,12 @@ post '/generate' => sub {
             weight          => $weight ? 1 : 0,
             shuffle_phrases => $shuffle_phrases ? 1 : 0,
             single          => $single_phrases ? 1 : 0,
-#            verbose         => 1,
             patches         => \@patches,
         );
 
-        $mng->process;
-        $mng->populate;
+        $analysis = $mng->process;
+        $playback = $mng->populate;
         $mng->write;
-
-        $phrases = $mng->notes;
 
         unlink $filename
             or croak "Can't unlink $filename: $!";
@@ -85,7 +83,8 @@ post '/generate' => sub {
         random_patch    => $random_patch,
         shuffle_phrases => $shuffle_phrases,
         single_phrases  => $single_phrases,
-        phrases         => $phrases,
+        analysis        => $analysis,
+        playback        => $playback,
     };
 };
 
