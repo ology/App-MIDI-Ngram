@@ -82,7 +82,7 @@
         [% END %]
             <br>
         </td>
-        [% IF (i % 6) %]</tr><tr>[% END %]
+        [% UNLESS i % 6 %]</tr><tr>[% END %]
     [% END %]
 [% ELSE %]
     [% FOREACH p in phrases %]
