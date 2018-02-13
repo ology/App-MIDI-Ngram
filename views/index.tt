@@ -71,7 +71,7 @@
     <tr>
 [% IF weight %]
     [% FOREACH p in phrases %]
-        <td nowrap>
+        <td nowrap valign="top">
             Channel [% p.key %] -
             <br>
         [% FOREACH q in p.value %]
@@ -83,7 +83,7 @@
     [% END %]
 [% ELSE %]
     [% FOREACH p in phrases %]
-        <td nowrap>
+        <td nowrap valign="top">
             Channel [% p.key %] -
             <br>
         [% FOREACH v IN p.value %]
