@@ -72,7 +72,7 @@
 [% IF weight %]
     [% FOREACH p in phrases %]
         <td nowrap valign="top">
-            Channel [% p.key %] -
+            Channel [% p.key %]
             <br>
         [% FOREACH q in p.value %]
             [% q.key %]: [% q.value %]
@@ -84,7 +84,7 @@
 [% ELSE %]
     [% FOREACH p in phrases %]
         <td nowrap valign="top">
-            Channel [% p.key %] -
+            Channel [% p.key %]
             <br>
         [% FOREACH v IN p.value %]
             [% v %]
