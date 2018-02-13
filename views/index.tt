@@ -59,11 +59,11 @@
 
 [% IF request.uri == '/generate' %]
             <p style="text-align: center">
-                <a href="#" onClick="MIDIjs.play('midi-ngram.mid');">Play</a>
+                <a href="#" onClick="MIDIjs.play('[% out_file %]');">Play</a>
                 |
                 <a href="#" onClick="MIDIjs.stop();">Stop</a>
                 |
-                <a href="midi-ngram.mid">Download</a>
+                <a href="[% out_file %]">Download</a>
             </p>
 [% END %]
 
@@ -82,7 +82,7 @@
         [% END %]
             <br>
         </td>
-        [% UNLESS i % 6 %]</tr><tr>[% END %]
+        [% UNLESS i % 5 %]</tr><tr>[% END %]
     [% END %]
 [% ELSE %]
     [% FOREACH p in phrases %]
@@ -95,7 +95,7 @@
             <br>
         [% END %]
         </td>
-        [% UNLESS i % 6 %]</tr><tr>[% END %]
+        [% UNLESS i % 5 %]</tr><tr>[% END %]
     [% END %]
 [% END %]
     </tr>
