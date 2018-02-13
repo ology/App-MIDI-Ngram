@@ -67,8 +67,11 @@
             </p>
 [% END %]
 
+<table cellpadding="10">
+    <tr>
 [% IF weight %]
     [% FOREACH p in phrases %]
+        <td>
             Channel [% p.key %] -
             <br>
         [% FOREACH q in p.value %]
@@ -76,17 +79,23 @@
             <br>
         [% END %]
             <br>
+        </td>
     [% END %]
 [% ELSE %]
     [% FOREACH p in phrases %]
+        <td>
             Channel [% p.key %] -
             <br>
         [% FOREACH v IN p.value %]
             [% v %]
             <br>
         [% END %]
+        </td>
     [% END %]
 [% END %]
+    </tr>
+</table>
+
         </div>
 
     </div>
