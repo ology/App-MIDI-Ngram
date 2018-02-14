@@ -58,6 +58,8 @@
             </form>
 
 [% IF request.uri == '/generate' && analysis %]
+            <br>
+            <hr>
             <p style="text-align: center">
                 [% filename %]
                 <br>
