@@ -57,7 +57,7 @@
             <input type="submit" />
             </form>
 
-[% IF request.uri == '/generate' %]
+[% IF request.uri == '/generate' && analysis %]
             <p style="text-align: center">
                 <a href="#" onClick="MIDIjs.play('[% out_file %]');">Play</a>
                 |
