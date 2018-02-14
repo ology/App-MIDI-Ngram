@@ -16,10 +16,11 @@ get '/' => sub {
 post '/generate' => sub {
     my $midi_file = upload('midi_file');
 
-    my $filename = '';
+    my ( $localname, $filename );
     if ( $midi_file ) {
         $midi_file->copy_to('MIDI/');
-        $filename = 'MIDI/' . basename( $midi_file->tempname );
+        $localname = 'MIDI/' . basename( $midi_file->tempname );
+        $filename  = $midi_file->filename;
     }
 
     my $ngram_size      = params->{ngram_size};
@@ -47,7 +48,7 @@ post '/generate' => sub {
 
     if ( $midi_file ) {
         my $mng = MIDI::Ngram->new(
-            file            => $filename,
+            file            => $localname,
             size            => $ngram_size,
             max             => $max_phrases,
             bpm             => $bpm,
@@ -66,8 +67,8 @@ post '/generate' => sub {
         $playback = $mng->populate;
         $mng->write;
 
-        unlink $filename
-            or croak "Can't unlink $filename: $!";
+        unlink $localname
+            or croak "Can't unlink $localname $!";
     }
 
     template 'index' => {
@@ -85,6 +86,7 @@ post '/generate' => sub {
         single_phrases  => $single_phrases,
         analysis        => $analysis,
         playback        => $playback,
+        filename        => $filename,
     };
 };
 

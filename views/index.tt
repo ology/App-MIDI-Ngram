@@ -59,16 +59,18 @@
 
 [% IF request.uri == '/generate' && analysis %]
             <p style="text-align: center">
+                [% filename %]
+                <br>
                 <a href="#" onClick="MIDIjs.play('[% out_file %]');">Play</a>
                 |
                 <a href="#" onClick="MIDIjs.stop();">Stop</a>
                 |
                 <a href="[% out_file %]">Download</a>
             </p>
-[% END %]
 
             <pre>[% analysis %]</pre>
             <pre>[% playback %]</pre>
+[% END %]
 
         </div>
 
