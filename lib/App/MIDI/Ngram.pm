@@ -5,7 +5,7 @@ use Carp;
 use File::Basename;
 use MIDI::Ngram;
 
-our $VERSION = '0.1';
+our $VERSION = '0.02';
 
 get '/' => sub {
     template 'index' => {
@@ -28,11 +28,14 @@ post '/generate' => sub {
     my $bpm             = params->{bpm};
     my $durations       = params->{durations} || ['qn'];
     my $pause           = params->{pause};
+    my $analyze         = params->{analyze} || [];
     my $weight          = params->{weight};
     my $loop            = params->{loop} || 4;
     my $random_patch    = params->{random_patch};
     my $shuffle_phrases = params->{shuffle_phrases};
     my $single_phrases  = params->{single_phrases};
+    my $one_channel     = params->{one_channel};
+    my $gestalt         = params->{gestalt};
 
     # General MIDI patches that are audible and aren't horrible
     my @patches = qw(
@@ -48,18 +51,21 @@ post '/generate' => sub {
 
     if ( $midi_file ) {
         my $mng = MIDI::Ngram->new(
-            file            => $localname,
-            size            => $ngram_size,
-            max             => $max_phrases,
+            in_file         => [ $localname ],
+            ngram_size      => $ngram_size,
+            max_phrases     => $max_phrases,
             bpm             => $bpm,
             durations       => ref $durations eq 'ARRAY' ? $durations : [ $durations ],
             out_file        => 'public/midi-ngram.mid',
-            pause           => $pause,
-            randpatch       => $random_patch ? 1 : 0,
+            pause_duration  => $pause,
+            analyze         => $analyze,
+            random_patch    => $random_patch ? 1 : 0,
             loop            => $loop,
             weight          => $weight ? 1 : 0,
             shuffle_phrases => $shuffle_phrases ? 1 : 0,
-            single          => $single_phrases ? 1 : 0,
+            single_phrases  => $single_phrases ? 1 : 0,
+            one_channel     => $one_channel ? 1 : 0,
+            gestalt         => $gestalt ? 1 : 0,
             patches         => \@patches,
         );
 
@@ -79,11 +85,14 @@ post '/generate' => sub {
         durations       => $durations,
         out_file        => 'midi-ngram.mid',
         pause           => $pause,
+        analyze         => $analyze,
         weight          => $weight,
         loop            => $loop,
         random_patch    => $random_patch,
         shuffle_phrases => $shuffle_phrases,
         single_phrases  => $single_phrases,
+        one_channel     => $one_channel,
+        gestalt         => $gestalt,
         analysis        => $analysis,
         playback        => $playback,
         filename        => $filename,
