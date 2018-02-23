@@ -48,22 +48,22 @@
 [% END %]
                     </select></label></li>
                 <li><label>Analyze:<br><select name="analyze" multiple size="4">
-                        <option value="0" [% durations.grep('^0$').size ? 'selected' : '' %] >0</option>
-                        <option value="1" [% durations.grep('^1$').size ? 'selected' : '' %] >1</option>
-                        <option value="2" [% durations.grep('^2$').size ? 'selected' : '' %] >2</option>
-                        <option value="3" [% durations.grep('^3$').size ? 'selected' : '' %] >3</option>
-                        <option value="4" [% durations.grep('^4$').size ? 'selected' : '' %] >4</option>
-                        <option value="5" [% durations.grep('^5$').size ? 'selected' : '' %] >5</option>
-                        <option value="6" [% durations.grep('^6$').size ? 'selected' : '' %] >6</option>
-                        <option value="7" [% durations.grep('^7$').size ? 'selected' : '' %] >7</option>
-                        <option value="8" [% durations.grep('^8$').size ? 'selected' : '' %] >8</option>
-                        <option value="9" [% durations.grep('^9$').size ? 'selected' : '' %] >9</option>
-                        <option value="10" [% durations.grep('^10$').size ? 'selected' : '' %] >10</option>
-                        <option value="11" [% durations.grep('^11$').size ? 'selected' : '' %] >11</option>
-                        <option value="12" [% durations.grep('^12$').size ? 'selected' : '' %] >12</option>
-                        <option value="13" [% durations.grep('^13$').size ? 'selected' : '' %] >13</option>
-                        <option value="14" [% durations.grep('^14$').size ? 'selected' : '' %] >14</option>
-                        <option value="15" [% durations.grep('^15$').size ? 'selected' : '' %] >15</option>
+                        <option value="0" [% analyze.grep('^0$').size ? 'selected' : '' %] >0</option>
+                        <option value="1" [% analyze.grep('^1$').size ? 'selected' : '' %] >1</option>
+                        <option value="2" [% analyze.grep('^2$').size ? 'selected' : '' %] >2</option>
+                        <option value="3" [% analyze.grep('^3$').size ? 'selected' : '' %] >3</option>
+                        <option value="4" [% analyze.grep('^4$').size ? 'selected' : '' %] >4</option>
+                        <option value="5" [% analyze.grep('^5$').size ? 'selected' : '' %] >5</option>
+                        <option value="6" [% analyze.grep('^6$').size ? 'selected' : '' %] >6</option>
+                        <option value="7" [% analyze.grep('^7$').size ? 'selected' : '' %] >7</option>
+                        <option value="8" [% analyze.grep('^8$').size ? 'selected' : '' %] >8</option>
+                        <option value="9" [% analyze.grep('^9$').size ? 'selected' : '' %] >9</option>
+                        <option value="10" [% analyze.grep('^10$').size ? 'selected' : '' %] >10</option>
+                        <option value="11" [% analyze.grep('^11$').size ? 'selected' : '' %] >11</option>
+                        <option value="12" [% analyze.grep('^12$').size ? 'selected' : '' %] >12</option>
+                        <option value="13" [% analyze.grep('^13$').size ? 'selected' : '' %] >13</option>
+                        <option value="14" [% analyze.grep('^14$').size ? 'selected' : '' %] >14</option>
+                        <option value="15" [% analyze.grep('^15$').size ? 'selected' : '' %] >15</option>
                     </select></label></li>
                 <li><label>Weighted: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label>
                     <label>Loop: <input type="text" name="loop" maxlength="2" size="2" value="[% loop %]" /></label></li>
