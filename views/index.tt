@@ -59,12 +59,17 @@
             <h3>Parameters:</h3>
             <ul class="links">
                 <li><label>MIDI File: <input name="midi_file" type="file" /></label></li>
-                <li><label>Ngram size: <input type="text" name="ngram_size" maxlength="2" size="2" value="[% ngram_size %]" /></label></li>
-                <li><label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
+                <li><label>Ngram size: <input type="text" name="ngram_size" maxlength="2" size="2" value="[% ngram_size %]" /></label>
+                    <label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
                 <li><label>BPM: <input type="text" name="bpm" maxlength="3" size="3" value="[% bpm %]" /></label></li>
                 <li><label>Durations:<br><select name="durations" multiple size="4">
 [% FOREACH d IN all_durations %]
                         <option value="[% d %]" [% durations.grep(grep_durations.$d).size ? 'selected' : '' %] >[% d %]</option>
+[% END %]
+                    </select></label></li>
+                <li><label>Analyze:<br><select name="analyze" multiple size="4">
+[% FOREACH c IN [ 0 .. 15 ] %]
+                        <option value="[% c %]" [% analyze.grep(grep_channels.$c).size ? 'selected' : '' %] >[% c %]</option>
 [% END %]
                     </select></label></li>
                 <li><label>Pause duration: <select name="pause">
@@ -73,18 +78,13 @@
                         <option value="[% d %]" [% d == pause ? 'selected' : '' %] >[% d %]</option>
 [% END %]
                     </select></label></li>
-                <li><label>Analyze:<br><select name="analyze" multiple size="4">
-[% FOREACH c IN [ 0 .. 15 ] %]
-                        <option value="[% c %]" [% analyze.grep(grep_channels.$c).size ? 'selected' : '' %] >[% c %]</option>
-[% END %]
-                    </select></label></li>
                 <li><label>Weighted: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label>
                     <label>Loop: <input type="text" name="loop" maxlength="2" size="2" value="[% loop %]" /></label></li>
                 <li><label>Random patch: <input type="checkbox" name="random_patch" [% random_patch ? 'checked' : '' %] /></label></li>
-                <li><label>Shuffle phrases: <input type="checkbox" name="shuffle_phrases" [% shuffle_phrases ? 'checked' : '' %] /></label></li>
-                <li><label>Single phrases: <input type="checkbox" name="single_phrases" [% single_phrases ? 'checked' : '' %] /></label></li>
-                <li><label>One channel: <input type="checkbox" name="one_channel" [% one_channel ? 'checked' : '' %] /></label></li>
-                <li><label>Gestalt: <input type="checkbox" name="gestalt" [% gestalt ? 'checked' : '' %] /></label></li>
+                <li><label>Shuffle phrases: <input type="checkbox" name="shuffle_phrases" [% shuffle_phrases ? 'checked' : '' %] /></label>
+                    <label>Single phrases: <input type="checkbox" name="single_phrases" [% single_phrases ? 'checked' : '' %] /></label></li>
+                <li><label>One channel: <input type="checkbox" name="one_channel" [% one_channel ? 'checked' : '' %] /></label>
+                    <label>Gestalt: <input type="checkbox" name="gestalt" [% gestalt ? 'checked' : '' %] /></label></li>
             </ul>
 
             <input type="submit" />
