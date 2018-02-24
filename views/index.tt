@@ -1,11 +1,49 @@
 [% 
-    all_durations => [
+    all_durations = [
         'sn', 'dsn', 'tsn',
         'en', 'den', 'ten',
         'qn', 'dqn', 'tqn',
         'hn', 'dhn', 'thn',
         'wn', 'dwn', 'twn',
     ]
+
+    grep_durations = {
+        sn  => '^sn$',
+        dsn => '^dsn$',
+        tsn => '^tsn$',
+        en  => '^en$',
+        den => '^den$',
+        ten => '^ten$',
+        qn  => '^qn$',
+        dqn => '^dqn$',
+        tqn => '^tqn$',
+        hn  => '^hn$',
+        dhn => '^dhn$',
+        thn => '^thn$',
+        wn  => '^wn$',
+        dwn => '^dwn$',
+        twn => '^twn$',
+    }
+
+    grep_channels = {
+        '0'  => '^0$',
+        '1'  => '^1$',
+        '2'  => '^2$',
+        '3'  => '^3$',
+        '4'  => '^4$',
+        '5'  => '^5$',
+        '6'  => '^6$',
+        '7'  => '^7$',
+        '8'  => '^8$',
+        '9'  => '^9$',
+        '10' => '^10$',
+        '11' => '^11$',
+        '12' => '^12$',
+        '13' => '^13$',
+        '14' => '^14$',
+        '15' => '^15$',
+    }
+
 %]
 
 <div id="page">
@@ -25,21 +63,9 @@
                 <li><label>Max phrases: <input type="text" name="max_phrases" maxlength="2" size="2" value="[% max_phrases %]" /></label></li>
                 <li><label>BPM: <input type="text" name="bpm" maxlength="3" size="3" value="[% bpm %]" /></label></li>
                 <li><label>Durations:<br><select name="durations" multiple size="4">
-                        <option value="sn" [% durations.grep('^sn$').size ? 'selected' : '' %] >sn</option>
-                        <option value="dsn" [% durations.grep('^dsn$').size ? 'selected' : '' %] >dsn</option>
-                        <option value="tsn" [% durations.grep('^tsn$').size ? 'selected' : '' %] >tsn</option>
-                        <option value="en" [% durations.grep('^en$').size ? 'selected' : '' %] >en</option>
-                        <option value="den" [% durations.grep('^den$').size ? 'selected' : '' %] >den</option>
-                        <option value="ten" [% durations.grep('^ten$').size ? 'selected' : '' %] >ten</option>
-                        <option value="qn" [% durations.grep('^qn$').size ? 'selected' : '' %] >qn</option>
-                        <option value="dqn" [% durations.grep('^dqn$').size ? 'selected' : '' %] >dqn</option>
-                        <option value="tqn" [% durations.grep('^tqn$').size ? 'selected' : '' %] >tqn</option>
-                        <option value="hn" [% durations.grep('^hn$').size ? 'selected' : '' %] >hn</option>
-                        <option value="dhn" [% durations.grep('^dhn$').size ? 'selected' : '' %] >dhn</option>
-                        <option value="thn" [% durations.grep('^thn$').size ? 'selected' : '' %] >thn</option>
-                        <option value="wn" [% durations.grep('^wn$').size ? 'selected' : '' %] >wn</option>
-                        <option value="dwn" [% durations.grep('^dwn$').size ? 'selected' : '' %] >dwn</option>
-                        <option value="twn" [% durations.grep('^twn$').size ? 'selected' : '' %] >twn</option>
+[% FOREACH d IN all_durations %]
+                        <option value="[% d %]" [% durations.grep(grep_durations.$d).size ? 'selected' : '' %] >[% d %]</option>
+[% END %]
                     </select></label></li>
                 <li><label>Pause duration: <select name="pause">
                         <option value="" [% pause ? '' : 'selected' %] >None</option>
@@ -48,22 +74,9 @@
 [% END %]
                     </select></label></li>
                 <li><label>Analyze:<br><select name="analyze" multiple size="4">
-                        <option value="0" [% analyze.grep('^0$').size ? 'selected' : '' %] >0</option>
-                        <option value="1" [% analyze.grep('^1$').size ? 'selected' : '' %] >1</option>
-                        <option value="2" [% analyze.grep('^2$').size ? 'selected' : '' %] >2</option>
-                        <option value="3" [% analyze.grep('^3$').size ? 'selected' : '' %] >3</option>
-                        <option value="4" [% analyze.grep('^4$').size ? 'selected' : '' %] >4</option>
-                        <option value="5" [% analyze.grep('^5$').size ? 'selected' : '' %] >5</option>
-                        <option value="6" [% analyze.grep('^6$').size ? 'selected' : '' %] >6</option>
-                        <option value="7" [% analyze.grep('^7$').size ? 'selected' : '' %] >7</option>
-                        <option value="8" [% analyze.grep('^8$').size ? 'selected' : '' %] >8</option>
-                        <option value="9" [% analyze.grep('^9$').size ? 'selected' : '' %] >9</option>
-                        <option value="10" [% analyze.grep('^10$').size ? 'selected' : '' %] >10</option>
-                        <option value="11" [% analyze.grep('^11$').size ? 'selected' : '' %] >11</option>
-                        <option value="12" [% analyze.grep('^12$').size ? 'selected' : '' %] >12</option>
-                        <option value="13" [% analyze.grep('^13$').size ? 'selected' : '' %] >13</option>
-                        <option value="14" [% analyze.grep('^14$').size ? 'selected' : '' %] >14</option>
-                        <option value="15" [% analyze.grep('^15$').size ? 'selected' : '' %] >15</option>
+[% FOREACH c IN [ 0 .. 15 ] %]
+                        <option value="[% c %]" [% analyze.grep(grep_channels.$c).size ? 'selected' : '' %] >[% c %]</option>
+[% END %]
                     </select></label></li>
                 <li><label>Weighted: <input type="checkbox" name="weight" [% weight ? 'checked' : '' %] /></label>
                     <label>Loop: <input type="text" name="loop" maxlength="2" size="2" value="[% loop %]" /></label></li>
